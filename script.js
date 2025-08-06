@@ -1,15 +1,25 @@
-// const images = ["./images/bring-her-back.jpeg", "./images/the naked gun.jpeg", "./images/i know what you did last summer.jpeg", "./images/mission impossible - the final reckoning.jpeg", "./images/smurfs.jpeg", "./images/how to train your dragon.jpeg"]
+function setActiveLink() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    sections.forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 100 && rect.bottom >= 100) {
+            const id = '#' + section.id;
+            navLinks.forEach(link => {
+                link.classList.remove('text-amber-400');
+                if (link.getAttribute('href') === id) {
+                    link.classList.add('text-amber-400');
+                }
+            });
+        }
+    });
 
-// let index = 0;
-// const home = document.getElementById("home");
+}
 
-//   function changeBg() {
-//     home.style.backgroundImage = `url(${images[index]})`;
-//     index = (index + 1) % images.length;
-//   }
-
-//   changeBg(); // initial load
-//   setInterval(changeBg, 5000); // change every 5 seconds
+// Check active section on scroll
+window.addEventListener('scroll', setActiveLink);
+window.addEventListener('load', setActiveLink);
 
 // Mobile Menu Toggle
         function toggleMobileMenu() {
