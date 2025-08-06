@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Century Cinema</title>
+    <link rel="icon" href="century logo.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-red-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="cinema-title text-2xl font-bold flex items-center">
+                        <img class="max-h-11 pr-3" src="./century logo.png" alt="logo"> Century Cinema
+                    </h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="hover:text-red-500 transition">Home</a>
+                    <a href="#showtimes" class="hover:text-red-500 transition">Showtimes</a>
+                    <a href="#comingsoon" class="hover:text-red-500 transition">Coming Soon</a>
+                    <a href="#offers" class="hover:text-red-500 transition">Offers</a>
+                    <a href="#contact" class="hover:text-red-500 transition">Contact</a>
+                </div>
+                <button class="md:hidden" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/95">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 hover:text-red-500">Home</a>
+                <a href="#showtimes" class="block px-3 py-2 hover:text-red-500">Showtimes</a>
+                <a href="#comingsoon" class="block px-3 py-2 hover:text-red-500">Coming Soon</a>
+                <a href="#offers" class="block px-3 py-2 hover:text-red-500">Offers</a>
+                <a href="#contact" class="block px-3 py-2 hover:text-red-500">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-black via-gray-900 to-black opacity-50"></div>
+        <div class="absolute inset-0">
+            <div class="parallax absolute inset-0" style="background-image: url('data:image/svg+xml,%3Csvg width="1920" height="1080" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" stop-color="%23000"/%3E%3Cstop offset="50%" stop-color="%23111"/%3E%3Cstop offset="100%" stop-color="%23000"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="1920" height="1080" fill="url(%23a)"/%3E%3C/svg%3E');"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4">
+            <h1 class="cinema-title text-6xl md:text-8xl font-black mb-4 fade-in">
+                <span class="text-amber-500">Century</span><span class="text-white">Cinema</span>
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 text-gray-300 fade-in">Modern cinema halls with Dolby 3D and Atmos sound. Experience reality!</p>
+            <div class="floating">
+                <button class="ticket-btn text-stone-600 px-8 py-4 rounded-full text-lg font-semibold" onclick="scrollToMovies()">
+                    <i class="fas fa-ticket-alt mr-2"></i>See Schedule
+                </button>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-3xl text-amber-500"></i>
+        </div>
+    </section>
+
+    <!-- Showtimes Section -->
+    <section id="showtimes" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="cinema-title text-5xl font-bold text-center mb-12">
+                <span class="text-amber-500">Movie</span> Showtimes
+            </h2>
+            <!--             
+            <div class="flex justify-center space-x-4 mb-8">
+                <button id="today-btn" class="day-btn bg-red-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors" onclick="switchDay('today')">Today</button>
+                <button id="tomorrow-btn" class="day-btn bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors" onclick="switchDay('tomorrow')">Tomorrow</button>
+                <button id="after-tomorrow-btn" class="day-btn bg-gray-700 hover:bg-gray-600 text-white px-6 py-2 rounded-lg font-semibold transition-colors" onclick="switchDay('after-tomorrow')">After Tomorrow</button>
+            </div> -->
+            
+            <!-- <div id="tomorrow-showtimes" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
+                Tomorrow's showtimes would go here
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" stop-color="%23e50914"/%3E%3Cstop offset="100%" stop-color="%23b20710"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23a)"/%3E%3Ctext x="200" y="300" text-anchor="middle" fill="white" font-size="24" font-family="Arial"%3EACTION%3C/text%3E%3C/svg%3E" alt="Action Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('Inception: Reloaded', 'https://www.youtube.com/embed/YOUR_TRAILER_ID')" class="play-btn bg-amber-600 hover:bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Inception: Reloaded</h3>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">11:00 AM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Standard</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">7:00 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">4K • Dolby Atmos</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                Other tomorrow movies would go here
+            </div> -->
+            
+            <!-- <div id="after-tomorrow-showtimes" class="hidden grid grid-cols-1 md:grid-cols-3 gap-8">
+                After tomorrow's showtimes would go here
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" stop-color="%23e50914"/%3E%3Cstop offset="100%" stop-color="%23b20710"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23a)"/%3E%3Ctext x="200" y="300" text-anchor="middle" fill="white" font-size="24" font-family="Arial"%3EACTION%3C/text%3E%3C/svg%3E" alt="Action Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('Inception: Reloaded', 'https://www.youtube.com/embed/YOUR_TRAILER_ID')" class="play-btn bg-red-600/80 hover:bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Inception: Reloaded</h3>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">12:30 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Standard</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">8:15 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">4K • Dolby Atmos</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                Other after tomorrow movies would go here
+            </div> -->
+            
+            <!-- Original today's showtimes (now with ID) -->
+            <div id="today-showtimes" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/fantastic fourm.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('The Last Empress', 'https://www.youtube.com/embed/YOUR_TRAILER_ID')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">The Fantastic 4: First Steps</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Sci-Fi • Adventure • 1h 55m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Movie 2 -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/bring-her-back.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick='openTrailerModal("Bring Her Back", "https://www.youtube.com/embed/kBskrYZfhw8?si=DAUkTv-ZlHZ7byUI")' class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Bring Her Back</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Horror • 1h 44m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- movie 3 -->
+                 <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/the naked gun.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('The Naked Gun', 'https://www.youtube.com/embed/uLguU7WLreA?si=6KnNDCwpTsGiRcVF')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">The Naked Gun</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Comedy • Crime • 1h 25m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- movie4 -->
+                 <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/i know what you did last summer.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('I know What You Did Last Summer', 'https://www.youtube.com/embed/9QABNfDhSxs?si=51O8RAnVkI_NLu2c')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">I Know What You Did Last Summer</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Horror • Mystery • Thriller • 1h 51m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- movie 5 -->
+                 <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/mission impossible - the final reckoning.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('Mission: Impossible - The Final Reckoning', 'https://www.youtube.com/embed/fsQgc9pCyDU?si=8vdeC9uxXQX3s6U6')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Mission: Impossible - The Final Reckoning</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Action • Adventure • Thriller • 2h 50m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- movie 6 -->
+                 <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/smurfs.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('Smurfs', 'https://www.youtube.com/embed/s18jQqtGsMw?si=P0Vy7aCda7FuEL1l')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Smurfs</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Animation • Family • Fantasy • 1h 29m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- movie 7 -->
+                 <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="./images/how to train your dragon.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('How to Train Your Dragon', 'https://www.youtube.com/embed/22w7z_lT6YM?si=jzD5QDFvvBd_oo5Z')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">How to Train Your Dragon</h3>
+                        <p class="text-gray-400 mb-4 pb-4 border-b-2 border-yellow-500/80">Fantasy • Family • Action • Adventure • 2h 5m</p>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" stop-color="%231a1a2e"/%3E%3Cstop offset="100%" stop-color="%2300d4ff"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23a)"/%3E%3Ctext x="200" y="300" text-anchor="middle" fill="white" font-size="24" font-family="Arial"%3EDRAMA%3C/text%3E%3C/svg%3E" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('The Last Empress', 'https://www.youtube.com/embed/YOUR_TRAILER_ID')" class="play-btn bg-amber-500/70 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">The Last Empress</h3>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">2:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 3D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">9:45 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">2D • Night Show</span>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+
+                <!-- Movie 3 -->
+                <!-- <div class="movie-card bg-gray-800 rounded-lg overflow-hidden relative">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" stop-color="%23007a7a"/%3E%3Cstop offset="100%" stop-color="%2300ff7f"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23a)"/%3E%3Ctext x="200" y="300" text-anchor="middle" fill="white" font-size="24" font-family="Arial"%3EANIMATION%3C/text%3E%3C/svg%3E" alt="Animation Movie" class="w-full h-96 object-cover">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <button onclick="openTrailerModal('The Last Empress', 'https://www.youtube.com/embed/YOUR_TRAILER_ID')" class="play-btn bg-amber-600/80 hover:bg-amber-500/80 text-white rounded-full w-16 h-16 flex items-center justify-center transition-all duration-300 transform hover:scale-110">
+                                <i class="fas fa-play text-2xl"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Cosmic Adventure</h3>
+                        <div class="space-y-2 mt-4">
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">3:30 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">IMAX • 2D</span>
+                            </button>
+                            <button class="showtime-btn w-full text-left px-4 py-2 rounded-lg">
+                                <span class="font-semibold">7:15 PM</span>
+                                <span class="text-sm text-gray-400 ml-2">4K • 3D</span>
+                            </button>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- coming soon Section -->
+    <section id="comingsoon" class="py-20 bg-gradient-to-b from-gray-900 to-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="cinema-title text-5xl font-bold text-center mb-12">
+                <span class="text-amber-500">coming</span> Soon
+            </h2>
+            
+            <div class="movie-cards grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Movie Cards -->
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="./images/freakier friday.jpg" alt="Action Movie" class="w-full h-96 object-cover">
+                        <!-- <div class="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            4K
+                        </div> -->
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Freakier Friday</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">6.4/10</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Fantasy • Comedy • Family • 2h 28m</p>
+                        <!-- <button class="w-full ticket-btn text-white py-3 rounded-lg font-semibold" onclick="openBookingModal('Inception: Reloaded')">
+                            Book Tickets
+                        </button> -->
+                    </div>
+                </div>
+
+                <div class="movie-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="./images/Avatar fire and ash.jpeg" alt="Drama Movie" class="w-full h-96 object-cover">
+                        <!-- <div class="absolute top-4 right-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            IMAX
+                        </div> -->
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Avatar: Fire and Ash</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">7.8/10</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Sci-fi • Adventure • Fantasy • 3h 12m</p>
+                        <!-- <button class="w-full ticket-btn text-white py-3 rounded-lg font-semibold" onclick="openBookingModal('The Last Empress')">
+                            Book Tickets
+                        </button> -->
+                    </div>
+                </div>
+
+                <!-- <div class="movie-card bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="relative">
+                        <img src="data:image/svg+xml,%3Csvg width="400" height="600" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg"%3E%3Cdefs%3E%3ClinearGradient id="a" x1="0%" y1="0%" x2="100%" y2="100%"%3E%3Cstop offset="0%" stop-color="%23007a7a"/%3E%3Cstop offset="100%" stop-color="%2300ff7f"/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width="400" height="600" fill="url(%23a)"/%3E%3Ctext x="200" y="300" text-anchor="middle" fill="white" font-size="24" font-family="Arial"%3EANIMATION%3C/text%3E%3C/svg%3E" alt="Animation Movie" class="w-full h-96 object-cover">
+                        <div class="absolute top-4 right-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            3D
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2">Cosmic Adventure</h3>
+                        <div class="flex items-center mb-2">
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="ml-2 text-gray-400">9.2/10</span>
+                        </div>
+                        <p class="text-gray-400 mb-4">Animation • Family • 1h 45m</p>
+                        <button class="w-full ticket-btn text-white py-3 rounded-lg font-semibold" onclick="openBookingModal('Cosmic Adventure')">
+                            Book Tickets
+                        </button>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Offers Section -->
+    <section id="offers" class="py-20 bg-gradient-to-b from-black to-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="cinema-title text-5xl font-bold text-center mb-12">
+                <span class="text-red-500">Special</span> Offers
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gradient-to-br from-red-600 to-red-800 rounded-lg p-6 text-center">
+                    <i class="fas fa-ticket-alt text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Student Discount</h3>
+                    <p class="text-3xl font-bold mb-2">25% OFF</p>
+                    <p class="text-sm">Valid with student ID</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-yellow-600 to-yellow-800 rounded-lg p-6 text-center">
+                    <i class="fas fa-couch text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Premium Seats</h3>
+                    <p class="text-3xl font-bold mb-2">15% OFF</p>
+                    <p class="text-sm">First 20 bookings daily</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg p-6 text-center">
+                    <i class="fas fa-calendar-alt text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Weekday Special</h3>
+                    <p class="text-3xl font-bold mb-2">30% OFF</p>
+                    <p class="text-sm">Monday - Thursday</p>
+                </div>
+                
+                <div class="bg-gradient-to-br from-green-600 to-green-800 rounded-lg p-6 text-center">
+                    <i class="fas fa-users text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2">Group Booking</h3>
+                    <p class="text-3xl font-bold mb-2">Buy 4 Get 1</p>
+                    <p class="text-sm">For groups of 5 or more</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="cinema-title text-5xl font-bold text-center mb-12">
+                <span class="text-red-500">Get</span> In Touch
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-3xl font-bold mb-6">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <i class="fas fa-map-marker-alt text-red-500 text-xl mr-4"></i>
+                            <span>Century Mall, Gurd Sholla, Addis Ababa, Ethiopia</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-red-500 text-xl mr-4"></i>
+                            <span>+251 95 123 4567</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-red-500 text-xl mr-4"></i>
+                            <span>centurycinema@gmail.com</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-clock text-red-500 text-xl mr-4"></i>
+                            <span>Open 24/7</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <form class="space-y-4" onsubmit="handleContactForm(event)">
+                        <input type="text" placeholder="Your Name" class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <input type="email" placeholder="Your Email" class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                        <textarea placeholder="Your Message" rows="4" class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"></textarea>
+                        <button type="submit" class="w-full ticket-btn text-white py-3 rounded-lg font-semibold">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="h-96 w-full">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.4859840401045!2d38.81123287501874!3d9.01935369104162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b8551e70d4e55%3A0x261206bdb30d4986!2sCentury%20Mall%20Gurd%20Shola!5e0!3m2!1sen!2set!4v1754479946544!5m2!1sen!2set" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="cinema-title text-3xl font-bold mb-4">
+                    <span class="text-red-500">Cine</span>Vista
+                </h1>
+                <div class="flex justify-center space-x-6 mb-6">
+                    <a href="#" class="text-2xl hover:text-red-500 transition">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-red-500 transition">
+                        <i class="fab fa-x-twitter"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-red-500 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-2xl hover:text-red-500 transition">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+                <p class="text-gray-400">&copy; 2024 CineVista. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="booking-modal" class="modal fixed inset-0 bg-black/80 z-50 hidden flex items-center justify-center">
+        <div class="bg-gray-900 rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Book Tickets</h3>
+                <button onclick="closeBookingModal()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="booking-content">
+                <p class="text-gray-400 mb-4">Select your preferred showtime and seats</p>
+                
+                <div class="space-y-4">
+                    <select class="w-full px-4 py-3 bg-gray-800 rounded-lg focus:outline-none">
+                        <option>Select Showtime</option>
+                        <option>10:30 AM - Screen 1</option>
+                        <option>2:45 PM - Screen 1</option>
+                        <option>6:30 PM - Screen 1</option>
+                        <option>9:45 PM - Screen 1</option>
+                    </select>
+                    
+                    <div class="grid grid-cols-10 gap-2 p-4 bg-gray-800 rounded-lg">
+                        <!-- Seat Layout -->
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                        <div class="w-8 h-8 bg-gray-600 rounded cursor-pointer hover:bg-red-500"></div>
+                    </div>
+                    
+                    <button class="w-full ticket-btn text-white py-3 rounded-lg font-semibold">
+                        Confirm Booking
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trailer Modal -->
+    <div id="trailer-modal" class="modal fixed inset-0 bg-black/90 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl">
+            <button onclick="closeTrailerModal()" class="absolute -top-12 right-0 text-white hover:text-red-500 text-3xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="aspect-w-16 aspect-h-9 bg-black">
+                <iframe id="trailer-iframe" class="w-full h-[500px]" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <h3 id="trailer-title" class="text-2xl font-bold mt-4 text-center text-white"></h3>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

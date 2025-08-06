@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* --primary-red: #e50914; */
+    --primary-red: #ffcc00;
+    /* --dark-red: #b20710; */
+    --dark-red: #FFA500;
+    --gold: #ffd700;
+    --dark-bg: #0a0a0a;
+    --gradient-bg: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f0f 100%);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--dark-bg);
+    overflow-x: hidden;
+}
+
+.cinema-title {
+    font-family: 'Orbitron', monospace;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, rgba(229, 9, 20, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.movie-card {
+    transition: all 0.3s ease;
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.movie-card:hover {
+    transform: perspective(1000px) rotateY(-5deg) translateY(-10px);
+    /* box-shadow: 0 20px 40px rgba(229, 9, 20, 0.3); */
+    box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+}
+
+.neon-text {
+    text-shadow: 0 0 10px var(--primary-red), 0 0 20px var(--primary-red), 0 0 30px var(--primary-red);
+}
+
+.ticket-btn {
+    background: linear-gradient(45deg, var(--primary-red), var(--dark-red));
+    transition: all 0.3s ease;
+}
+
+.ticket-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.5);
+}
+
+.showtime-btn {
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+/* .showtime-btn:hover {
+    border-color: var(--primary-red);
+    background: rgba(229, 9, 20, 0.1);
+} */
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.floating {
+    animation: floating 3s ease-in-out infinite;
+}
+
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.marquee {
+    animation: marquee 30s linear infinite;
+}
+
+@keyframes marquee {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+.modal {
+    backdrop-filter: blur(10px);
+}
+
+
+.play-btn {
+    opacity: 1;
+    transition: all 0.3s ease;
+}
