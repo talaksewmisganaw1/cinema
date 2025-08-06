@@ -17,6 +17,9 @@ function setActiveLink() {
 
 }
 
+const year = document.getElementById("year");
+year.innerHTML= new Date().getFullYear();
+
 // Check active section on scroll
 window.addEventListener('scroll', setActiveLink);
 window.addEventListener('load', setActiveLink);
